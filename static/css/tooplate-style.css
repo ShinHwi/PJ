@@ -308,6 +308,10 @@ footer {
     padding: 10px 30px;
 }
 
+.tm-myimg {
+    max-width: 100%;
+}
+
 a, button { transition: all 0.3s ease; }
 a:hover,
 a:focus {
