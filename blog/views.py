@@ -9,12 +9,25 @@
 from django.shortcuts import render
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
-from datetime import datetime
+import datetime
+from pytz import timezone
 
 # Create your views here.
 
 
-today_day = datetime.today().strftime("%m-%d")
+# today_day = datetime.today().strftime("%m-%d")
+
+today_day = datetime.datetime.now().strftime("%m-%d")  # 한국 시간
+
+us_time = datetime.datetime.now(timezone('America/New_York')).strftime("%m-%d") # 미국 시간
+jp_time = today_day # 일본 시간
+cn_time = datetime.datetime.now(timezone('Asia/Shanghai')).strftime("%m-%d") # 중국 시간
+
+time_arr = [us_time, jp_time, cn_time]
+
+
+
+
 
 
 url1 = "http://www.wedarak.net"
@@ -64,7 +77,7 @@ for i in range(3):
 
             url10 = url1 + url1004
 
-            if (url10[-5:] == today_day):
+            if (url10[-5:] == time_arr[i]):
 
 
                 with urlopen(url10) as response:
@@ -81,6 +94,8 @@ for i in range(3):
 image_link_eng = total_arr[0]
 image_link_jp = total_arr[1]
 image_link_cn = total_arr[2]
+
+
 
 def index(req):
     context = {
